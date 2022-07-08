@@ -98,12 +98,14 @@ ImageIcon img = new ImageIcon("C:/Users/Aluno/Desktop/armariosPOO/src/main/java/
 
     private void btnAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminActionPerformed
         // TODO add your handling code here:
+        new EditorLoginUI().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnAdminActionPerformed
 
     private void btnAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlunoActionPerformed
         // TODO add your handling code here:
+        new EditorLoginUI().setVisible(true);
         this.setVisible(false);
-
     }//GEN-LAST:event_btnAlunoActionPerformed
 
     /**
