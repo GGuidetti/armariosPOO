@@ -4,6 +4,12 @@
  */
 package br.edu.ifpr.paranavai.armarios.visao;
 
+import br.edu.ifpr.paranavai.armarios.controle.LoginControlador;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Aluno
@@ -15,6 +21,20 @@ public class EditorLoginUI extends javax.swing.JFrame {
      */
     public EditorLoginUI() {
         initComponents();
+        passwordField.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                if(e.getKeyCode()==KeyEvent.VK_ENTER){
+                    loginLblActionPerformed(null);
+                }
+            }
+        });
+        emailField.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                if(e.getKeyCode()==KeyEvent.VK_ENTER){
+                    loginLblActionPerformed(null);
+                }
+            }
+        });
     }
 
     /**
@@ -32,7 +52,7 @@ public class EditorLoginUI extends javax.swing.JFrame {
         loginLbl = new javax.swing.JButton();
         titleLbl = new javax.swing.JLabel();
         erroLbl = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        passwordField = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -48,13 +68,23 @@ public class EditorLoginUI extends javax.swing.JFrame {
         senhaLbl.setText("Senha");
 
         loginLbl.setText("Logar");
+        loginLbl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginLblActionPerformed(evt);
+            }
+        });
 
         titleLbl.setFont(new java.awt.Font("Yu Gothic UI", 1, 36)); // NOI18N
         titleLbl.setText("LOGIN");
 
         erroLbl.setForeground(new java.awt.Color(255, 0, 51));
 
-        jPasswordField1.setText("jPasswordField1");
+        passwordField.setText("jPasswordField1");
+        passwordField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordFieldActionPerformed(evt);
+            }
+        });
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText(" ");
@@ -83,7 +113,7 @@ public class EditorLoginUI extends javax.swing.JFrame {
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(73, 73, 73))
                             .addComponent(emailField)
-                            .addComponent(jPasswordField1, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE))))
+                            .addComponent(passwordField, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE))))
                 .addContainerGap(63, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(178, Short.MAX_VALUE)
@@ -102,7 +132,7 @@ public class EditorLoginUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(senhaLbl)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(loginLbl)
                 .addGap(18, 18, 18)
@@ -119,13 +149,28 @@ public class EditorLoginUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_emailFieldActionPerformed
 
+    private void loginLblActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginLblActionPerformed
+        // TODO add your handling code here:
+        jLabel1.setText(LoginControlador.verifica(emailField.getText(),passwordField.getText()));  
+    }//GEN-LAST:event_loginLblActionPerformed
+
+    public void keyTyped(KeyEvent e) {
+        jLabel1.setText("Teste funcionou");
+    }
+    
+    private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_passwordFieldActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField emailField;
     private javax.swing.JLabel emailLbl;
     private javax.swing.JLabel erroLbl;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JButton loginLbl;
+    private javax.swing.JPasswordField passwordField;
     private javax.swing.JLabel senhaLbl;
     private javax.swing.JLabel titleLbl;
     // End of variables declaration//GEN-END:variables

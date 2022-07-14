@@ -45,7 +45,7 @@
                               <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
                           </Group>
                           <Component id="emailField" max="32767" attributes="0"/>
-                          <Component id="jPasswordField1" alignment="0" pref="241" max="32767" attributes="0"/>
+                          <Component id="passwordField" alignment="0" pref="241" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -71,7 +71,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="senhaLbl" min="-2" max="-2" attributes="0"/>
-                  <Component id="jPasswordField1" min="-2" max="-2" attributes="0"/>
+                  <Component id="passwordField" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="loginLbl" min="-2" max="-2" attributes="0"/>
@@ -105,6 +105,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Logar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="loginLblActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="titleLbl">
       <Properties>
@@ -121,10 +124,13 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JPasswordField" name="jPasswordField1">
+    <Component class="javax.swing.JPasswordField" name="passwordField">
       <Properties>
         <Property name="text" type="java.lang.String" value="jPasswordField1"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="passwordFieldActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
