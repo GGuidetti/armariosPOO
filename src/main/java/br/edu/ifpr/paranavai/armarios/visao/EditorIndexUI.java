@@ -13,11 +13,12 @@ import javax.swing.JFrame;
  * @author Aluno
  */
 public class EditorIndexUI extends javax.swing.JFrame {
-ImageIcon img = new ImageIcon("C:/Users/Aluno/Desktop/armariosPOO/src/main/java/br/edu/ifpr/paranavai/armarios/visao/icon.png");
+ImageIcon img;
     /**
      * Creates new form EditorLoginUI
      */
     public EditorIndexUI() {
+        img = new ImageIcon(EditorIndexUI.class.getResource("/icon.png"));
         initComponents();
     }
 
