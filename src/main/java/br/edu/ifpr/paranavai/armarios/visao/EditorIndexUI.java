@@ -13,12 +13,10 @@ import javax.swing.JFrame;
  * @author Aluno
  */
 public class EditorIndexUI extends javax.swing.JFrame {
-ImageIcon img;
     /**
      * Creates new form EditorLoginUI
      */
     public EditorIndexUI() {
-        img = new ImageIcon(EditorIndexUI.class.getResource("/icon.png"));
         initComponents();
     }
 
@@ -39,7 +37,6 @@ ImageIcon img;
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gerenciador de armários");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setIconImage(img.getImage());
 
         labelBemVindo.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         labelBemVindo.setText("BEM-VINDO");
