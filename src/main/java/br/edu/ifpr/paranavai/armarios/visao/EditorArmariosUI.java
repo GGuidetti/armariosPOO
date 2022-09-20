@@ -227,6 +227,11 @@ public class EditorArmariosUI extends javax.swing.JFrame {
         jButton72.setText("LIVRE");
 
         jButton73.setText("OFF");
+        jButton73.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton73ActionPerformed(evt);
+            }
+        });
 
         jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel18.setText("E");
@@ -493,6 +498,10 @@ public class EditorArmariosUI extends javax.swing.JFrame {
     private void jButton65ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton65ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton65ActionPerformed
+
+    private void jButton73ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton73ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton73ActionPerformed
 
     /**
      * @param args the command line arguments
