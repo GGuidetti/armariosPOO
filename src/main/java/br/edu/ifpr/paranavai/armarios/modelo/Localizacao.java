@@ -13,8 +13,8 @@ public class Localizacao {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_localizacao", unique = true, nullable = false)
-    private Integer localizacaoId;
+    @Column(name = "id", unique = true, nullable = false)
+    private Integer id;
 
     @Column(name = "nome", nullable = false, length = 100)
     private String nome;
@@ -27,11 +27,11 @@ public class Localizacao {
     }
 
     public Integer getLocalizacaoId() {
-        return localizacaoId;
+        return id;
     }
 
-    public void setLocalizacaoId(Integer localizacaoId) {
-        this.localizacaoId = localizacaoId;
+    public void setLocalizacaoId(Integer id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -44,7 +44,7 @@ public class Localizacao {
 
     @Override
     public String toString() {
-        return "Localizacao{" + "localizacaoId=" + localizacaoId + ", nome=" + nome + '}';
+        return "Localizacao{" + "id=" + id + ", nome=" + nome + '}';
     }
 
 }
