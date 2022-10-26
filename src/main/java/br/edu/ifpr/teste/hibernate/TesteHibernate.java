@@ -1,37 +1,28 @@
 package br.edu.ifpr.teste.hibernate;
 
-import br.edu.ifpr.paranavai.armarios.dao.LocalizacaoDao;
-import br.edu.ifpr.paranavai.armarios.dao.LocalizacaoDaoImpl;
-import br.edu.ifpr.paranavai.armarios.modelo.Localizacao;
-import java.util.List;
+import br.edu.ifpr.paranavai.armarios.conexao.HibernateUtil;
+import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
 import org.hibernate.Session;
 
 public class TesteHibernate {
 
     public static void main(String[] args) {
-        LocalizacaoDao dao = new LocalizacaoDaoImpl();
         
-        // Localizacao local = new Localizacao("Biblioteca");
+        Session sessao = HibernateUtil.getSession();
+        sessao.beginTransaction();
+        Estudante estudante = new Estudante(
+            1,
+            "20210002202",
+            "Pedro Henrique Santos Kusiak",
+            "pedrokusiak24@gmail.com",
+            "44999999999",
+            "cudizap69",
+            true,
+            null,
+            null
+        );
+        sessao.save(estudante);
 
-        //dao.inserir(local);
-        List<Localizacao> lista = dao.buscarTodos();
-        
-       // Localizacao localNovo = new Localizacao("Bloco 2");
-        
-        // dao.inserir(localNovo);
-        
-        for (Localizacao localizacao : lista) {
-            System.out.println(localizacao.toString());
-        }
-         Localizacao local = dao.buscarPorId(1);
-         System.out.println(local.toString());
-         
-         local.setNome("Bloco Administrativo");
-         dao.atualizar(local);
-         
-         local = dao.buscarPorId(1);
-         
-         System.out.println(local.toString());
-         
+        sessao.getTransaction().commit();
     }
 }

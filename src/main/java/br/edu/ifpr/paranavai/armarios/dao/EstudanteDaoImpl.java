@@ -1,4 +1,4 @@
-package br.edu.ifpr.paranavai.armarios.dao;
+    package br.edu.ifpr.paranavai.armarios.dao;
 
 import br.edu.ifpr.paranavai.armarios.conexao.HibernateUtil;
 import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
@@ -40,7 +40,7 @@ public class EstudanteDaoImpl implements EstudanteDao {
     }
 
     @Override
-    public void inserir(Estudante estudante) {
+    public Estudante inserir(Estudante estudante) {
         try {
             sessao.beginTransaction();
             sessao.persist(estudante);
@@ -48,6 +48,7 @@ public class EstudanteDaoImpl implements EstudanteDao {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return estudante;
     }
 
     @Override
