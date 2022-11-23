@@ -38,6 +38,47 @@ public class Reserva {
     public Reserva() {
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
+    }
+
+    public Armario getArmario() {
+        return armario;
+    }
+
+    public void setArmario(Armario armario) {
+        this.armario = armario;
+    }
+
+    public Date getDataHoraDevolucao() {
+        return dataHoraDevolucao;
+    }
+
+    public void setDataHoraDevolucao(Date dataHoraDevolucao) {
+        this.dataHoraDevolucao = dataHoraDevolucao;
+    }
+
+    public Date getDataHoraEmprestimo() {
+        return dataHoraEmprestimo;
+    }
+
+    public void setDataHoraEmprestimo(Date dataHoraEmprestimo) {
+        this.dataHoraEmprestimo = dataHoraEmprestimo;
+    }
+    
+
     public Reserva(Pessoa pessoa, Armario armario, Date dataHoraDevolucao, Date dataHoraEmprestimo) {
         this.pessoa = pessoa;
         this.armario = armario;
