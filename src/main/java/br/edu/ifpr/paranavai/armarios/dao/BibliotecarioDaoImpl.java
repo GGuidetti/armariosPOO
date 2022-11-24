@@ -40,7 +40,7 @@ public class BibliotecarioDaoImpl implements BibliotecarioDao {
     }
 
     @Override
-    public void inserir(Bibliotecario bibliotecario) {
+    public Bibliotecario inserir(Bibliotecario bibliotecario) {
         try {
             sessao.beginTransaction();
             sessao.persist(bibliotecario);
@@ -48,10 +48,11 @@ public class BibliotecarioDaoImpl implements BibliotecarioDao {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return bibliotecario;
     }
 
     @Override
-    public void atualizar(Bibliotecario bibliotecario) {
+    public Bibliotecario atualizar(Bibliotecario bibliotecario) {
         try {
             sessao.beginTransaction();
             sessao.update(bibliotecario);
@@ -59,6 +60,7 @@ public class BibliotecarioDaoImpl implements BibliotecarioDao {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return bibliotecario;
     }
 
     @Override

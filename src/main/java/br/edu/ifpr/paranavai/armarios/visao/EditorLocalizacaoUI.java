@@ -154,6 +154,10 @@ public class EditorLocalizacaoUI extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(tblLocalizacao);
+        if (tblLocalizacao.getColumnModel().getColumnCount() > 0) {
+            tblLocalizacao.getColumnModel().getColumn(0).setResizable(false);
+            tblLocalizacao.getColumnModel().getColumn(1).setResizable(false);
+        }
 
         painelInferior.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 

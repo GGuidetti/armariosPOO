@@ -52,7 +52,7 @@ public class EstudanteDaoImpl implements EstudanteDao {
     }
 
     @Override
-    public void atualizar(Estudante estudante) {
+    public Estudante atualizar(Estudante estudante) {
         try {
             sessao.beginTransaction();
             sessao.update(estudante);
@@ -60,6 +60,7 @@ public class EstudanteDaoImpl implements EstudanteDao {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return estudante;
     }
 
     @Override

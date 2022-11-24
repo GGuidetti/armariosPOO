@@ -5,7 +5,7 @@ import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
 import java.util.List;
 import br.edu.ifpr.paranavai.armarios.dao.EstudanteDao;
 
-public class EstudanteServico {
+public class ArmarioServico {
 
     private static EstudanteDao dao = new EstudanteDaoImpl();
 
