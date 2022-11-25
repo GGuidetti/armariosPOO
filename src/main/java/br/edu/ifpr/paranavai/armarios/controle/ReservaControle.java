@@ -8,4 +8,7 @@ public class ReservaControle {
     public static List<Reserva> listarTodasReservas(){
         return ReservaServico.buscarTodos();
     }
+    public static void excluir (Reserva reserva) {
+        ReservaServico.excluir(reserva);
+    }
 }

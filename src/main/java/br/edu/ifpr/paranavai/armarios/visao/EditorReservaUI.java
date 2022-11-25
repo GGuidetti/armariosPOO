@@ -210,7 +210,7 @@ public class EditorReservaUI extends javax.swing.JFrame {
                 int codigo = (int) tblReserva.getModel().getValueAt(dadosLinha, 0);
 
                 for (Reserva reserva : this.listaDeReservas) {
-                    if(reserva.getReservaId() == codigo)
+                    if(reserva.getId()== codigo)
                         ReservaControle.excluir(reserva);
                 }
                 
