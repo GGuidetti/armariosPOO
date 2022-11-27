@@ -21,7 +21,7 @@ public class EditorEstudantesUI extends javax.swing.JFrame {
      */
     public EditorEstudantesUI() {
         initComponents();
-        this.listaEstudante = EstudanteControle.listarTodasEstudantes();
+        this.listaEstudante = EstudanteControle.listarTodosEstudantes();
         populaCorreto(this.listaEstudante);
     }
 

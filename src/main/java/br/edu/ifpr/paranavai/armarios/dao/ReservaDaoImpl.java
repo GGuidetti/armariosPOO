@@ -40,7 +40,7 @@ public class ReservaDaoImpl implements ReservaDao {
     }
 
     @Override
-    public void inserir(Reserva reserva) {
+    public Reserva inserir(Reserva reserva) {
         try {
             sessao.beginTransaction();
             sessao.persist(reserva);
@@ -48,10 +48,11 @@ public class ReservaDaoImpl implements ReservaDao {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return reserva;
     }
 
     @Override
-    public void atualizar(Reserva reserva) {
+    public Reserva atualizar(Reserva reserva) {
         try {
             sessao.beginTransaction();
             sessao.update(reserva);
@@ -59,6 +60,7 @@ public class ReservaDaoImpl implements ReservaDao {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return reserva;
     }
 
     @Override

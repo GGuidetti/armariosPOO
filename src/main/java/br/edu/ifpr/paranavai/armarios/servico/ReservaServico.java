@@ -17,12 +17,12 @@ public class ReservaServico {
         return dao.buscarPorId(id);
     }
 
-    public static void inserir(Reserva reserva) {
-         dao.inserir(reserva);
+    public static Reserva inserir(Reserva reserva) {
+         return dao.inserir(reserva);
     }
 
-    public static void atualizar(Reserva reserva) {
-        dao.atualizar(reserva);
+    public static Reserva atualizar(Reserva reserva) {
+        return dao.atualizar(reserva);
     }
 
     public static void excluir(Reserva reserva) {

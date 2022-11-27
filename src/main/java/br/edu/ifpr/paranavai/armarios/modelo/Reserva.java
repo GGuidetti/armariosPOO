@@ -19,7 +19,6 @@ public class Reserva {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", unique = true, nullable = false)
     private Integer id;
-     
     
     @ManyToOne
     @JoinColumn(name = "pessoa_id")

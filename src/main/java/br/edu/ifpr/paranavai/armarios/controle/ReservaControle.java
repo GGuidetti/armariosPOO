@@ -8,6 +8,18 @@ public class ReservaControle {
     public static List<Reserva> listarTodasReservas(){
         return ReservaServico.buscarTodos();
     }
+
+    public static Reserva inserir(Reserva reserva) {
+        return ReservaServico.inserir(reserva);
+    }
+
+    public static Reserva buscarPorId(int codigo) {
+        return ReservaServico.buscarPorId(codigo);
+    }
+    public static Reserva atualizar(Reserva reserva) {
+        return ReservaServico.atualizar(reserva);
+    }
+    
     public static void excluir (Reserva reserva) {
         ReservaServico.excluir(reserva);
     }

@@ -5,6 +5,7 @@
 package br.edu.ifpr.paranavai.armarios.visao;
 
 import br.edu.ifpr.paranavai.armarios.controle.ReservaControle;
+import br.edu.ifpr.paranavai.armarios.modelo.Pessoa;
 import br.edu.ifpr.paranavai.armarios.modelo.Reserva;
 import javax.swing.JOptionPane;
 
@@ -27,8 +28,8 @@ public class FormReservaUI extends javax.swing.JFrame {
     public FormReservaUI(int codigo) {
         initComponents();
         this.reserva = ReservaControle.buscarPorId(codigo);
-        panelFormulario.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados da Reserva " + this.reserva.getReservaId()));
-        txtNome.setText(this.reserva.getNome());
+        panelFormulario.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados da Reserva " + this.reserva.getId()));
+        txtNome.setText(this.reserva.getPessoa().getNome());
     }
 
     /**
@@ -47,12 +48,20 @@ public class FormReservaUI extends javax.swing.JFrame {
         txtNome1 = new javax.swing.JTextField();
         lblNome1 = new javax.swing.JLabel();
         lblNome2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
 
-        panelFormulario.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados da Localização"));
+        panelFormulario.setToolTipText("");
+        panelFormulario.setName("Dados da Reserva"); // NOI18N
         panelFormulario.setOpaque(false);
+
+        txtNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNomeActionPerformed(evt);
+            }
+        });
 
         btnSalvar.setText("Salvar");
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -68,9 +77,14 @@ public class FormReservaUI extends javax.swing.JFrame {
             }
         });
 
-        lblNome1.setText("Nome");
+        lblNome1.setText("Aluno");
 
         lblNome2.setText("Armario");
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Formulário de Reserva");
+        jLabel1.setToolTipText("");
 
         javax.swing.GroupLayout panelFormularioLayout = new javax.swing.GroupLayout(panelFormulario);
         panelFormulario.setLayout(panelFormularioLayout);
@@ -91,11 +105,16 @@ public class FormReservaUI extends javax.swing.JFrame {
                             .addComponent(lblNome1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFormularioLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(94, 94, 94))
         );
         panelFormularioLayout.setVerticalGroup(
             panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelFormularioLayout.createSequentialGroup()
-                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(1, 1, 1)
                 .addComponent(lblNome1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -118,7 +137,7 @@ public class FormReservaUI extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelFormulario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelFormulario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         panelFormulario.getAccessibleContext().setAccessibleName("Dados da Reserva");
@@ -126,20 +145,27 @@ public class FormReservaUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        this.setVisible(false);
+        EditorReservaUI editorReservaUI = new EditorReservaUI();
+        editorReservaUI.setLocationRelativeTo(null);
+        editorReservaUI.setVisible(true);
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        if (this.reserva.getReservaId() == null) {
+        if (this.reserva.getId() == null) {
             try {
-                this.reserva.setNome(txtNome.getText());
+                this.reserva.setPessoa(new Pessoa());
                 this.reserva = ReservaControle.inserir(this.reserva);
                 JOptionPane.showMessageDialog(this, "Localização Salva com Sucesso!!!");
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Algo de Errado Aconteceu!!!");
                 e.printStackTrace();
             }
-            
-        }else {            
+
+        }else {
             try {
-                this.reserva.setNome(txtNome.getText());
+                this.reserva.setPessoa(new Pessoa());
                 this.reserva = ReservaControle.atualizar(this.reserva);
                 JOptionPane.showMessageDialog(this, "Alterações salvas com Sucesso!!!");
             } catch (Exception e) {
@@ -153,12 +179,9 @@ public class FormReservaUI extends javax.swing.JFrame {
         editorReservaUI.setVisible(true);
     }//GEN-LAST:event_btnSalvarActionPerformed
 
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        this.setVisible(false);
-        EditorReservaUI editorReservaUI = new EditorReservaUI();
-        editorReservaUI.setLocationRelativeTo(null);
-        editorReservaUI.setVisible(true);
-    }//GEN-LAST:event_btnCancelarActionPerformed
+    private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNomeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -201,6 +224,7 @@ public class FormReservaUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnSalvar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblNome1;
     private javax.swing.JLabel lblNome2;
     private javax.swing.JPanel panelFormulario;

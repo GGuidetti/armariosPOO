@@ -1,31 +1,31 @@
 package br.edu.ifpr.paranavai.armarios.servico;
 
-import br.edu.ifpr.paranavai.armarios.dao.EstudanteDaoImpl;
-import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
+import br.edu.ifpr.paranavai.armarios.dao.ArmarioDaoImpl;
+import br.edu.ifpr.paranavai.armarios.modelo.Armario;
 import java.util.List;
-import br.edu.ifpr.paranavai.armarios.dao.EstudanteDao;
+import br.edu.ifpr.paranavai.armarios.dao.ArmarioDao;
 
 public class ArmarioServico {
 
-    private static EstudanteDao dao = new EstudanteDaoImpl();
+    private static ArmarioDao dao = new ArmarioDaoImpl();
 
-    public static List<Estudante> buscarTodos() {
+    public static List<Armario> buscarTodos() {
         return dao.buscarTodos();
     }
 
-    public static Estudante buscarPorId(Integer id) {
+    public static Armario buscarPorId(Integer id) {
         return dao.buscarPorId(id);
     }
 
-    public static Estudante inserir(Estudante estudante) {
-        return dao.inserir(estudante);
+    public static Armario inserir(Armario armario) {
+        return dao.inserir(armario);
     }
 
-    public static Estudante atualizar(Estudante estudante) {
-        return dao.atualizar(estudante);
+    public static Armario atualizar(Armario armario) {
+        return dao.atualizar(armario);
     }
 
-    public static void excluir(Estudante estudante) {
-        dao.excluir(estudante);
+    public static void excluir(Armario armario) {
+        dao.excluir(armario);
     }
 }

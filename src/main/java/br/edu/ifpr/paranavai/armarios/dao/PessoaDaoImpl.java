@@ -40,7 +40,7 @@ public class PessoaDaoImpl implements PessoaDao {
     }
 
     @Override
-    public void inserir(Pessoa pessoa) {
+    public Pessoa inserir(Pessoa pessoa) {
         try {
             sessao.beginTransaction();
             sessao.persist(pessoa);
@@ -48,10 +48,11 @@ public class PessoaDaoImpl implements PessoaDao {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return pessoa;
     }
 
     @Override
-    public void atualizar(Pessoa pessoa) {
+    public Pessoa atualizar(Pessoa pessoa) {
         try {
             sessao.beginTransaction();
             sessao.update(pessoa);
@@ -59,6 +60,7 @@ public class PessoaDaoImpl implements PessoaDao {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return pessoa;
     }
 
     @Override

@@ -5,7 +5,7 @@ import br.edu.ifpr.paranavai.armarios.servico.EstudanteServico;
 import java.util.List;
 
 public class EstudanteControle {
-    public static List<Estudante> listarTodasLocalizacoes(){
+    public static List<Estudante> listarTodosEstudantes(){
         return EstudanteServico.buscarTodos();
     }
 
