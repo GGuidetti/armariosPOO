@@ -5,7 +5,7 @@ import br.edu.ifpr.paranavai.armarios.servico.BibliotecarioServico;
 import java.util.List;
 
 public class BibliotecarioControle {
-    public static List<Bibliotecario> listarTodasLocalizacoes(){
+    public static List<Bibliotecario> listaTodosBibliotecarios(){
         return BibliotecarioServico.buscarTodos();
     }
 

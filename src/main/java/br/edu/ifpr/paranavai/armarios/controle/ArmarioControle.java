@@ -5,7 +5,7 @@ import br.edu.ifpr.paranavai.armarios.servico.ArmarioServico;
 import java.util.List;
 
 public class ArmarioControle {
-    public static List<Armario> listarTodasLocalizacoes(){
+    public static List<Armario> listarTodosArmarios(){
         return ArmarioServico.buscarTodos();
     }
 
