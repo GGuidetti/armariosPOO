@@ -176,7 +176,7 @@ public class FormArmarioUI extends javax.swing.JFrame {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         this.setVisible(false);
-        EditorArmarioUI editorArmarioUI = new EditorArmarioUI();
+        EditorArmariosUI editorArmarioUI = new EditorArmariosUI();
         editorArmarioUI.setLocationRelativeTo(null);
         editorArmarioUI.setVisible(true);
     }//GEN-LAST:event_btnCancelarActionPerformed
@@ -204,9 +204,9 @@ public class FormArmarioUI extends javax.swing.JFrame {
             }
         }
         this.setVisible(false);
-        EditorArmarioUI editorArmarioUI = new EditorArmarioUI();
-        editorArmarioUI.setLocationRelativeTo(null);
-        editorArmarioUI.setVisible(true);
+        EditorArmariosUI editorArmariosUI = new EditorArmariosUI();
+        editorArmariosUI.setLocationRelativeTo(null);
+        editorArmariosUI.setVisible(true);
         
        
         jComboBox1.addItem("jao");
