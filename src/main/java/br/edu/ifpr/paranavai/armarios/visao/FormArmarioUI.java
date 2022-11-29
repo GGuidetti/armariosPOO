@@ -9,8 +9,6 @@ import br.edu.ifpr.paranavai.armarios.modelo.Armario;
 import br.edu.ifpr.paranavai.armarios.modelo.Localizacao;
 import br.edu.ifpr.paranavai.armarios.servico.LocalizacaoServico;
 import java.util.List;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 /**
@@ -28,14 +26,18 @@ public class FormArmarioUI extends javax.swing.JFrame {
         initComponents();
         this.armario = new Armario();
         this.localizacoes = LocalizacaoServico.buscarTodos();
-        Localizacao[] arrayLoc = new Localizacao [this.localizacoes.size()];
-        jComboBox1 = new JComboBox(new DefaultComboBoxModel(arrayLoc));
+        for (Localizacao localizacao : localizacoes){
+            jComboBox1.addItem(new ComboItem(localizacao.getNome(),localizacao));
+        }
     }
 
     public FormArmarioUI(int codigo) {
         initComponents();
         this.armario = ArmarioControle.buscarPorId(codigo);
         this.localizacoes = LocalizacaoServico.buscarTodos();
+        for (Localizacao localizacao : localizacoes){
+            jComboBox1.addItem(new ComboItem(localizacao.getNome(),localizacao));
+        }
         panelFormulario.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados da Armario " + this.armario.getArmarioId()));
         txtNome.setText(this.armario.getNumero());
     }
@@ -185,8 +187,9 @@ public class FormArmarioUI extends javax.swing.JFrame {
                 this.armario.setNumero(txtNome.getText());
                 this.armario.setObservacoes(txtObservacoes.getText());
                 this.armario.setAtivo(true);
+                this.armario.setLocalizacao(((ComboItem)jComboBox1.getSelectedItem()).getLocalizacao());
                 this.armario = ArmarioControle.inserir(this.armario);
-                JOptionPane.showMessageDialog(this, "Localização Salva com Sucesso!!!");
+                JOptionPane.showMessageDialog(this, "Armário Salvo com Sucesso!!!");
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Algo de Errado Aconteceu!!!");
                 e.printStackTrace();
@@ -194,6 +197,10 @@ public class FormArmarioUI extends javax.swing.JFrame {
 
         }else {
             try {
+                this.armario.setNumero(txtNome.getText());
+                this.armario.setObservacoes(txtObservacoes.getText());
+                this.armario.setAtivo(true);
+                this.armario.setLocalizacao(((ComboItem)jComboBox1.getSelectedItem()).getLocalizacao());
                 this.armario = ArmarioControle.atualizar(this.armario);
                 JOptionPane.showMessageDialog(this, "Alterações salvas com Sucesso!!!");
             } catch (Exception e) {
@@ -207,7 +214,6 @@ public class FormArmarioUI extends javax.swing.JFrame {
         editorArmariosUI.setVisible(true);
         
        
-        jComboBox1.addItem("jao");
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
@@ -263,7 +269,7 @@ public class FormArmarioUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnSalvar;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<ComboItem> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblNome1;
     private javax.swing.JLabel lblNome2;
