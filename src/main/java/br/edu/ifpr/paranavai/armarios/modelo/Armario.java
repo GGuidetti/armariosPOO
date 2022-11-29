@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,23 +17,27 @@ public class Armario {
     @Column(name = "id", unique = true, nullable = false)
     private Integer id;
     
-    
     @Column(name = "numero", unique = true, nullable = false)
     private String numero;
     
-    @Column(name = "ativo", unique = true, nullable = false, length = 100)
+    @Column(name = "ativo", unique = false, nullable = false)
     private boolean ativo;
     
-    @Column(name = "observacoes", unique = true, nullable = false, length = 100)
+    @Column(name = "observacoes", unique = false, nullable = true, length = 100)
     private String observacoes;
-
+    
+    @ManyToOne
+    @JoinColumn(name = "localizacao_id")
+    private Localizacao localizacao;
+    
     public Armario() {
     }
 
-    public Armario(String numero, boolean ativo, String observacoes) {
+    public Armario(String numero, boolean ativo, String observacoes, Localizacao localizacao) {
         this.numero = numero;
         this.ativo = ativo;
         this.observacoes = observacoes;
+        this.localizacao = localizacao;
     }
 
     public Integer getArmarioId() {
@@ -64,6 +70,22 @@ public class Armario {
 
     public void setObservacoes(String observacoes) {
         this.observacoes = observacoes;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Localizacao getLocalizacao() {
+        return localizacao;
+    }
+
+    public void setLocalizacao(Localizacao localizacao) {
+        this.localizacao = localizacao;
     }
     
     
