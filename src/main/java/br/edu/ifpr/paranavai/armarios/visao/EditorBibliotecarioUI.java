@@ -4,8 +4,8 @@
  */
 package br.edu.ifpr.paranavai.armarios.visao;
 
-import br.edu.ifpr.paranavai.armarios.controle.EstudanteControle;
-import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
+import br.edu.ifpr.paranavai.armarios.controle.BibliotecarioControle;
+import br.edu.ifpr.paranavai.armarios.modelo.Bibliotecario;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -15,34 +15,34 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Aluno
  */
-public class EditorEstudantesUI extends javax.swing.JFrame {
+public class EditorBibliotecarioUI extends javax.swing.JFrame {
 
-    private List<Estudante> listaEstudante;
+    private List<Bibliotecario> listaBibliotecario;
     /**
      * Creates new form EditorAlunosUI
      */
-    public EditorEstudantesUI() {
+    public EditorBibliotecarioUI() {
         initComponents();
         
         this.setLocationRelativeTo(null);
-        this.listaEstudante = EstudanteControle.listarTodosEstudantes();
-        populaTabela(listaEstudante);
+        this.listaBibliotecario = BibliotecarioControle.listaTodosBibliotecarios();
+        populaTabela(listaBibliotecario);
     }
     
-    private void populaTabela(List<Estudante> lista) {
-        DefaultTableModel modeloDeColunasDaTabela = (DefaultTableModel) tblEstudantes.getModel();
+    private void populaTabela(List<Bibliotecario> lista) {
+        DefaultTableModel modeloDeColunasDaTabela = (DefaultTableModel) tblBibliotecario.getModel();
         //  Primeiro limpa a tabela
         while (modeloDeColunasDaTabela.getRowCount() != 0) {
             modeloDeColunasDaTabela.removeRow(0);
         }
         
         for (int i = 0; i < lista.size(); i++) {
-            Estudante mostraEstudante = lista.get(i);
+            Bibliotecario mostraBibliotecario = lista.get(i);
             Object[] dadosLinha = new Object[4];
-            dadosLinha[0] = mostraEstudante.getId();
-            dadosLinha[1] = mostraEstudante.getNome();
-            dadosLinha[2] = mostraEstudante.getEmail();
-            dadosLinha[3] = mostraEstudante.getTelefone();
+            dadosLinha[0] = mostraBibliotecario.getSiape();
+            dadosLinha[1] = mostraBibliotecario.getNome();
+            dadosLinha[2] = mostraBibliotecario.getEmail();
+            dadosLinha[3] = mostraBibliotecario.getTelefone();
             modeloDeColunasDaTabela.addRow(dadosLinha);
         }
     }
@@ -56,7 +56,7 @@ public class EditorEstudantesUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblEstudantes = new javax.swing.JTable();
+        tblBibliotecario = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         panelNovo = new javax.swing.JPanel();
         btnNovo = new javax.swing.JButton();
@@ -69,7 +69,7 @@ public class EditorEstudantesUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        tblEstudantes.setModel(new javax.swing.table.DefaultTableModel(
+        tblBibliotecario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -78,11 +78,11 @@ public class EditorEstudantesUI extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "RA", "Nome", "E-mail", "Telefone"
+                "Siape", "Nome", "E-mail", "Telefone"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false
@@ -96,12 +96,12 @@ public class EditorEstudantesUI extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tblEstudantes);
-        if (tblEstudantes.getColumnModel().getColumnCount() > 0) {
-            tblEstudantes.getColumnModel().getColumn(0).setResizable(false);
-            tblEstudantes.getColumnModel().getColumn(1).setResizable(false);
-            tblEstudantes.getColumnModel().getColumn(2).setResizable(false);
-            tblEstudantes.getColumnModel().getColumn(3).setResizable(false);
+        jScrollPane1.setViewportView(tblBibliotecario);
+        if (tblBibliotecario.getColumnModel().getColumnCount() > 0) {
+            tblBibliotecario.getColumnModel().getColumn(0).setResizable(false);
+            tblBibliotecario.getColumnModel().getColumn(1).setResizable(false);
+            tblBibliotecario.getColumnModel().getColumn(2).setResizable(false);
+            tblBibliotecario.getColumnModel().getColumn(3).setResizable(false);
         }
 
         panelNovo.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -192,7 +192,7 @@ public class EditorEstudantesUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-        FormEstudanteUI form = new FormEstudanteUI();
+        FormBibliotecarioUI form = new FormBibliotecarioUI();
         this.setVisible(false);
         form.setLocationRelativeTo(this);
         form.setVisible(true);
@@ -200,38 +200,38 @@ public class EditorEstudantesUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        if (tblEstudantes.getSelectedRow() >= 0) {
-            int dadosLinha = tblEstudantes.getSelectedRow();
-            int codigo = (int) tblEstudantes.getModel().getValueAt(dadosLinha, 0);
-            FormEstudanteUI form = new FormEstudanteUI(codigo);
+        if (tblBibliotecario.getSelectedRow() >= 0) {
+            int dadosLinha = tblBibliotecario.getSelectedRow();
+            int codigo = (int) tblBibliotecario.getModel().getValueAt(dadosLinha, 0);
+            FormBibliotecarioUI form = new FormBibliotecarioUI(codigo);
             this.setVisible(false);
             form.setLocationRelativeTo(this);
             form.setSize(500,440);
             form.setVisible(true);
             dispose();
         }else {
-            JOptionPane.showMessageDialog(null, "Selecione um Estudante!");
+            JOptionPane.showMessageDialog(null, "Selecione um Bibliotecario!");
         }
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        if (tblEstudantes.getSelectedRow() >= 0) {
-            int resposta = JOptionPane.showConfirmDialog(null, "Confirma a exclusão do Estudante?", "Excluir Estudante!", JOptionPane.YES_NO_OPTION);
+        if (tblBibliotecario.getSelectedRow() >= 0) {
+            int resposta = JOptionPane.showConfirmDialog(null, "Confirma a exclusão do Bibliotecario?", "Excluir Bibliotecario!", JOptionPane.YES_NO_OPTION);
 
             if (resposta == 0) {
-                 int index = tblEstudantes.getSelectedRow();
+                 int index = tblBibliotecario.getSelectedRow();
 //                int codigo = (int) tblArmario.getModel().getValueAt(dadosLinha, 0);
-                Estudante armario = this.listaEstudante.get(index);
-                EstudanteControle.excluir(armario);
+                Bibliotecario armario = this.listaBibliotecario.get(index);
+                BibliotecarioControle.excluir(armario);
 
-                this.listaEstudante = EstudanteControle.listarTodosEstudantes();
+                this.listaBibliotecario = BibliotecarioControle.listaTodosBibliotecarios();
 
-                populaTabela(this.listaEstudante);
+                populaTabela(this.listaBibliotecario);
 
-                JOptionPane.showMessageDialog(null, "Estudante Removida!");
+                JOptionPane.showMessageDialog(null, "Bibliotecario Removido!");
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Selecione um Estudante!");
+            JOptionPane.showMessageDialog(null, "Selecione um Bibliotecario!");
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
@@ -240,11 +240,11 @@ public class EditorEstudantesUI extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNomeActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        ArrayList<Estudante> filtrado = new ArrayList<Estudante>();
+        ArrayList<Bibliotecario> filtrado = new ArrayList<Bibliotecario>();
 
-        for (Estudante estudante : listaEstudante) {
-            if(estudante.getNome().toUpperCase().contains(txtNome.getText().toUpperCase()))
-            filtrado.add(estudante);
+        for (Bibliotecario bibliotecario : listaBibliotecario) {
+            if(bibliotecario.getNome().toUpperCase().contains(txtNome.getText().toUpperCase()))
+            filtrado.add(bibliotecario);
         }
 
         populaTabela(filtrado);
@@ -267,21 +267,23 @@ public class EditorEstudantesUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EditorEstudantesUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditorBibliotecarioUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EditorEstudantesUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditorBibliotecarioUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EditorEstudantesUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditorBibliotecarioUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EditorEstudantesUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditorBibliotecarioUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EditorEstudantesUI().setVisible(true);
+                new EditorBibliotecarioUI().setVisible(true);
             }
         });
     }
@@ -296,7 +298,7 @@ public class EditorEstudantesUI extends javax.swing.JFrame {
     private javax.swing.JLabel lblNome;
     private javax.swing.JPanel panelBusca;
     private javax.swing.JPanel panelNovo;
-    private javax.swing.JTable tblEstudantes;
+    private javax.swing.JTable tblBibliotecario;
     private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
 }

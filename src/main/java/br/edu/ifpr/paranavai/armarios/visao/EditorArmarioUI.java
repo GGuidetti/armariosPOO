@@ -4,8 +4,8 @@
  */
 package br.edu.ifpr.paranavai.armarios.visao;
 
-import br.edu.ifpr.paranavai.armarios.controle.EstudanteControle;
-import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
+import br.edu.ifpr.paranavai.armarios.controle.ArmarioControle;
+import br.edu.ifpr.paranavai.armarios.modelo.Armario;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -15,34 +15,33 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Aluno
  */
-public class EditorEstudantesUI extends javax.swing.JFrame {
+public class EditorArmarioUI extends javax.swing.JFrame {
 
-    private List<Estudante> listaEstudante;
+    private List<Armario> listaArmario;
     /**
      * Creates new form EditorAlunosUI
      */
-    public EditorEstudantesUI() {
+    public EditorArmarioUI() {
         initComponents();
         
         this.setLocationRelativeTo(null);
-        this.listaEstudante = EstudanteControle.listarTodosEstudantes();
-        populaTabela(listaEstudante);
+        this.listaArmario = ArmarioControle.listarTodosArmarios();
+        populaTabela(listaArmario);
     }
     
-    private void populaTabela(List<Estudante> lista) {
-        DefaultTableModel modeloDeColunasDaTabela = (DefaultTableModel) tblEstudantes.getModel();
+    private void populaTabela(List<Armario> lista) {
+        DefaultTableModel modeloDeColunasDaTabela = (DefaultTableModel) tblArmario.getModel();
         //  Primeiro limpa a tabela
         while (modeloDeColunasDaTabela.getRowCount() != 0) {
             modeloDeColunasDaTabela.removeRow(0);
         }
         
         for (int i = 0; i < lista.size(); i++) {
-            Estudante mostraEstudante = lista.get(i);
+            Armario mostraArmario = lista.get(i);
             Object[] dadosLinha = new Object[4];
-            dadosLinha[0] = mostraEstudante.getId();
-            dadosLinha[1] = mostraEstudante.getNome();
-            dadosLinha[2] = mostraEstudante.getEmail();
-            dadosLinha[3] = mostraEstudante.getTelefone();
+            dadosLinha[0] = mostraArmario.getNumero();
+            dadosLinha[1] = mostraArmario.getObservacoes();
+            dadosLinha[2] = mostraArmario.getLocalizacao().getNome();
             modeloDeColunasDaTabela.addRow(dadosLinha);
         }
     }
@@ -56,7 +55,7 @@ public class EditorEstudantesUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblEstudantes = new javax.swing.JTable();
+        tblArmario = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         panelNovo = new javax.swing.JPanel();
         btnNovo = new javax.swing.JButton();
@@ -69,23 +68,23 @@ public class EditorEstudantesUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        tblEstudantes.setModel(new javax.swing.table.DefaultTableModel(
+        tblArmario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "RA", "Nome", "E-mail", "Telefone"
+                "Numero", "Localizacao", "Observacao"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -96,12 +95,11 @@ public class EditorEstudantesUI extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tblEstudantes);
-        if (tblEstudantes.getColumnModel().getColumnCount() > 0) {
-            tblEstudantes.getColumnModel().getColumn(0).setResizable(false);
-            tblEstudantes.getColumnModel().getColumn(1).setResizable(false);
-            tblEstudantes.getColumnModel().getColumn(2).setResizable(false);
-            tblEstudantes.getColumnModel().getColumn(3).setResizable(false);
+        jScrollPane1.setViewportView(tblArmario);
+        if (tblArmario.getColumnModel().getColumnCount() > 0) {
+            tblArmario.getColumnModel().getColumn(0).setResizable(false);
+            tblArmario.getColumnModel().getColumn(1).setResizable(false);
+            tblArmario.getColumnModel().getColumn(2).setResizable(false);
         }
 
         panelNovo.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -134,7 +132,7 @@ public class EditorEstudantesUI extends javax.swing.JFrame {
         panelBusca.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 0, 10));
         panelBusca.setLayout(new javax.swing.BoxLayout(panelBusca, javax.swing.BoxLayout.LINE_AXIS));
 
-        lblNome.setText("Nome: ");
+        lblNome.setText("Numero:");
         panelBusca.add(lblNome);
 
         txtNome.setSelectedTextColor(new java.awt.Color(204, 204, 204));
@@ -192,7 +190,7 @@ public class EditorEstudantesUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-        FormEstudanteUI form = new FormEstudanteUI();
+        FormArmarioUI form = new FormArmarioUI();
         this.setVisible(false);
         form.setLocationRelativeTo(this);
         form.setVisible(true);
@@ -200,38 +198,44 @@ public class EditorEstudantesUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        if (tblEstudantes.getSelectedRow() >= 0) {
-            int dadosLinha = tblEstudantes.getSelectedRow();
-            int codigo = (int) tblEstudantes.getModel().getValueAt(dadosLinha, 0);
-            FormEstudanteUI form = new FormEstudanteUI(codigo);
+        if (tblArmario.getSelectedRow() >= 0) {
+            int dadosLinha = tblArmario.getSelectedRow();
+            int codigo = (int) tblArmario.getModel().getValueAt(dadosLinha, 0);
+            FormArmarioUI form = new FormArmarioUI(codigo);
             this.setVisible(false);
             form.setLocationRelativeTo(this);
             form.setSize(500,440);
             form.setVisible(true);
             dispose();
         }else {
-            JOptionPane.showMessageDialog(null, "Selecione um Estudante!");
+            JOptionPane.showMessageDialog(null, "Selecione um Armario!");
         }
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        if (tblEstudantes.getSelectedRow() >= 0) {
-            int resposta = JOptionPane.showConfirmDialog(null, "Confirma a exclusão do Estudante?", "Excluir Estudante!", JOptionPane.YES_NO_OPTION);
+        if (tblArmario.getSelectedRow() >= 0) {
+            int resposta = JOptionPane.showConfirmDialog(null, "Confirma a exclusão do Armario?", "Excluir Armario!", JOptionPane.YES_NO_OPTION);
 
             if (resposta == 0) {
-                 int index = tblEstudantes.getSelectedRow();
+                int index = tblArmario.getSelectedRow();
 //                int codigo = (int) tblArmario.getModel().getValueAt(dadosLinha, 0);
-                Estudante armario = this.listaEstudante.get(index);
-                EstudanteControle.excluir(armario);
+                Armario armario = this.listaArmario.get(index);
+                ArmarioControle.excluir(armario);
 
-                this.listaEstudante = EstudanteControle.listarTodosEstudantes();
+//                
+//                for (Armario armarios : this.listaArmario) {
+//                    if(armarios.getId()== codigo)
+//                    ArmarioControle.excluir(armarios);
+//                }
 
-                populaTabela(this.listaEstudante);
+                this.listaArmario = ArmarioControle.listarTodosArmarios();
 
-                JOptionPane.showMessageDialog(null, "Estudante Removida!");
+                populaTabela(this.listaArmario);
+
+                JOptionPane.showMessageDialog(null, "Armario Removida!");
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Selecione um Estudante!");
+            JOptionPane.showMessageDialog(null, "Selecione um Armario!");
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
@@ -240,11 +244,11 @@ public class EditorEstudantesUI extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNomeActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        ArrayList<Estudante> filtrado = new ArrayList<Estudante>();
+        ArrayList<Armario> filtrado = new ArrayList<Armario>();
 
-        for (Estudante estudante : listaEstudante) {
-            if(estudante.getNome().toUpperCase().contains(txtNome.getText().toUpperCase()))
-            filtrado.add(estudante);
+        for (Armario armarios : listaArmario) {
+            if(armarios.getNumero().toUpperCase().contains(txtNome.getText().toUpperCase()))
+            filtrado.add(armarios);
         }
 
         populaTabela(filtrado);
@@ -267,21 +271,35 @@ public class EditorEstudantesUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EditorEstudantesUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditorArmarioUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EditorEstudantesUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditorArmarioUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EditorEstudantesUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditorArmarioUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EditorEstudantesUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditorArmarioUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EditorEstudantesUI().setVisible(true);
+                new EditorArmarioUI().setVisible(true);
             }
         });
     }
@@ -296,7 +314,7 @@ public class EditorEstudantesUI extends javax.swing.JFrame {
     private javax.swing.JLabel lblNome;
     private javax.swing.JPanel panelBusca;
     private javax.swing.JPanel panelNovo;
-    private javax.swing.JTable tblEstudantes;
+    private javax.swing.JTable tblArmario;
     private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
 }
