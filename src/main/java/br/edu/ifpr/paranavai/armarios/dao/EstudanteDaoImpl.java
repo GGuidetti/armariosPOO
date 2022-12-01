@@ -4,6 +4,7 @@ import br.edu.ifpr.paranavai.armarios.conexao.HibernateUtil;
 import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
 import java.util.List;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 public class EstudanteDaoImpl implements EstudanteDao {
 
@@ -32,6 +33,21 @@ public class EstudanteDaoImpl implements EstudanteDao {
         try {
             sessao.beginTransaction();
             estudante = (Estudante) sessao.get(Estudante.class, id);
+            sessao.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return estudante;
+    }
+    
+    @Override
+    public Estudante buscarPorRa(String ra) {
+        Estudante estudante = null;
+        try {
+            sessao.beginTransaction();
+            estudante = (Estudante) sessao.createQuery("FROM Estudante WHERE ra = :ra").
+                    setParameter("ra", ra).
+                    uniqueResult();
             sessao.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();

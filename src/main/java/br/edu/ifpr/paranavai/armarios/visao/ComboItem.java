@@ -4,6 +4,8 @@
  */
 package br.edu.ifpr.paranavai.armarios.visao;
 
+import br.edu.ifpr.paranavai.armarios.modelo.Armario;
+import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
 import br.edu.ifpr.paranavai.armarios.modelo.Localizacao;
 
 /**
@@ -14,11 +16,25 @@ class ComboItem
 {
     private String key;
     private Localizacao localizacao;
+    private Armario armario;
+    private Estudante estudante;
 
     public ComboItem(String key, Localizacao localizacao)
     {
         this.key = key;
         this.localizacao = localizacao;
+    }
+    
+    public ComboItem(String key, Armario armario)
+    {
+        this.key = key;
+        this.armario = armario;
+    }
+    
+    public ComboItem(String key, Estudante estudante)
+    {
+        this.key = key;
+        this.estudante = estudante;
     }
 
     @Override
@@ -35,5 +51,15 @@ class ComboItem
     public Localizacao getLocalizacao()
     {
         return localizacao;
+    }
+    
+    public Armario getArmario()
+    {
+        return armario;
+    }
+    
+    public Estudante getEstudante()
+    {
+        return estudante;
     }
 }

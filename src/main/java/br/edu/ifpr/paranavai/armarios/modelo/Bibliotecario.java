@@ -1,6 +1,5 @@
 package br.edu.ifpr.paranavai.armarios.modelo;
 
-import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,6 +27,14 @@ public class Bibliotecario extends Pessoa{
     public Bibliotecario(String siape, String nome, String email, String telefone, String senha, boolean ativo, Date dataAtualizacao, Date dataCriacao) {
         super(nome, email, telefone, senha, ativo, dataAtualizacao, dataCriacao);
         this.siape = siape;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getSiape() {

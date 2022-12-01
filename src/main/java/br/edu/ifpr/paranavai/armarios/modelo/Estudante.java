@@ -18,7 +18,7 @@ public class Estudante extends Pessoa{
     @Column(name = "id", unique = true, nullable = false)
     private Integer id;
     
-    @Column(name = "ra", nullable = false, length = 100)
+    @Column(name = "ra", unique = true,nullable = false, length = 100)
     private String ra;
 
     public Integer getId() {

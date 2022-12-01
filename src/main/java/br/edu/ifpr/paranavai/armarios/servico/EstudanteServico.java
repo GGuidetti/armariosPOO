@@ -16,6 +16,10 @@ public class EstudanteServico {
     public static Estudante buscarPorId(Integer id) {
         return dao.buscarPorId(id);
     }
+    
+     public static Estudante buscarPorRa(String ra) {
+        return dao.buscarPorRa(ra);
+    }
 
     public static Estudante inserir(Estudante estudante) {
         return dao.inserir(estudante);

@@ -37,15 +37,15 @@ public class EditorReservaUI extends javax.swing.JFrame {
         
         for (int i = 0; i < lista.size(); i++) {
             Reserva mostraReserva = lista.get(i);
-            Object[] dadosLinha = new Object[2];
-            dadosLinha[0] = mostraReserva.getPessoa().getNome();
-            dadosLinha[1] = mostraReserva.getArmario().getNumero();
-            dadosLinha[2] = mostraReserva.getDataHoraEmprestimo();
-            dadosLinha[3] = mostraReserva.getDataHoraDevolucao();
+            Object[] dadosLinha = new Object[5];
+            dadosLinha[0] = mostraReserva.getId();
+            dadosLinha[1] = mostraReserva.getEstudante().getNome();
+            dadosLinha[2] = mostraReserva.getArmario().getNumero();
+            dadosLinha[3] = mostraReserva.getDataHoraEmprestimo();
+            dadosLinha[4] = mostraReserva.getDataHoraDevolucao();
             modeloDeColunasDaTabela.addRow(dadosLinha);
         }
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -131,20 +131,20 @@ public class EditorReservaUI extends javax.swing.JFrame {
 
         tblReserva.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Pessoa", "Armario", "Emprestimo", "Devolução"
+                "ID", "Pessoa", "Armario", "Emprestimo", "Devolução"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, true, true
+                true, false, true, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -172,7 +172,7 @@ public class EditorReservaUI extends javax.swing.JFrame {
         ArrayList<Reserva> filtrado = new ArrayList<Reserva>();
         
         for (Reserva reserva : listaDeReservas) {
-            if(reserva.getPessoa().getNome().toUpperCase().contains(txtNome.getText().toUpperCase()))
+            if(reserva.getEstudante().getNome().toUpperCase().contains(txtNome.getText().toUpperCase()))
                 filtrado.add(reserva);
         }
         

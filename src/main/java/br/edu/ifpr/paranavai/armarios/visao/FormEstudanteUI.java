@@ -200,7 +200,7 @@ public class FormEstudanteUI extends javax.swing.JFrame {
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         if (this.estudante.getId() == null) {
             try {
-                this.estudante.setRa(txtTelefone.getText());
+                this.estudante.setRa(txtRa.getText());
                 this.estudante.setNome(txtNome.getText());
                 this.estudante.setTelefone(txtTelefone.getText());
                 this.estudante.setEmail(txtEmail.getText());
@@ -214,11 +214,10 @@ public class FormEstudanteUI extends javax.swing.JFrame {
 
         }else {
             try {
-                this.estudante.setRa(txtTelefone.getText());
+                this.estudante.setRa(txtRa.getText());
                 this.estudante.setNome(txtNome.getText());
                 this.estudante.setTelefone(txtTelefone.getText());
                 this.estudante.setEmail(txtEmail.getText());
-                this.estudante.setSenha(txtSenha.getText());
                 this.estudante = EstudanteControle.atualizar(this.estudante);
                 JOptionPane.showMessageDialog(this, "Alterações salvas com Sucesso!!!");
             } catch (Exception e) {

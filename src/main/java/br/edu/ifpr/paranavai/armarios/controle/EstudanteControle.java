@@ -16,6 +16,10 @@ public class EstudanteControle {
     public static Estudante buscarPorId(int codigo) {
         return EstudanteServico.buscarPorId(codigo);
     }
+    
+    public static Estudante buscarPorRa(String ra) {
+        return EstudanteServico.buscarPorRa(ra);
+    }
     public static Estudante atualizar(Estudante estudante) {
         return EstudanteServico.atualizar(estudante);
     }

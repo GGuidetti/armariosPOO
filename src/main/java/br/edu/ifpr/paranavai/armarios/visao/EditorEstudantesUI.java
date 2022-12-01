@@ -38,11 +38,12 @@ public class EditorEstudantesUI extends javax.swing.JFrame {
         
         for (int i = 0; i < lista.size(); i++) {
             Estudante mostraEstudante = lista.get(i);
-            Object[] dadosLinha = new Object[4];
+            Object[] dadosLinha = new Object[5];
             dadosLinha[0] = mostraEstudante.getId();
-            dadosLinha[1] = mostraEstudante.getNome();
-            dadosLinha[2] = mostraEstudante.getEmail();
-            dadosLinha[3] = mostraEstudante.getTelefone();
+            dadosLinha[1] = mostraEstudante.getRa();
+            dadosLinha[2] = mostraEstudante.getNome();
+            dadosLinha[3] = mostraEstudante.getEmail();
+            dadosLinha[4] = mostraEstudante.getTelefone();
             modeloDeColunasDaTabela.addRow(dadosLinha);
         }
     }
@@ -71,21 +72,21 @@ public class EditorEstudantesUI extends javax.swing.JFrame {
 
         tblEstudantes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "RA", "Nome", "E-mail", "Telefone"
+                "ID", "RA", "Nome", "E-mail", "Telefone"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -96,12 +97,16 @@ public class EditorEstudantesUI extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblEstudantes.setAlignmentX(0.0F);
+        tblEstudantes.setAlignmentY(0.0F);
+        tblEstudantes.setShowGrid(false);
         jScrollPane1.setViewportView(tblEstudantes);
         if (tblEstudantes.getColumnModel().getColumnCount() > 0) {
             tblEstudantes.getColumnModel().getColumn(0).setResizable(false);
             tblEstudantes.getColumnModel().getColumn(1).setResizable(false);
             tblEstudantes.getColumnModel().getColumn(2).setResizable(false);
             tblEstudantes.getColumnModel().getColumn(3).setResizable(false);
+            tblEstudantes.getColumnModel().getColumn(4).setResizable(false);
         }
 
         panelNovo.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -159,7 +164,7 @@ public class EditorEstudantesUI extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelNovo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelNovo, javax.swing.GroupLayout.DEFAULT_SIZE, 587, Short.MAX_VALUE)
                     .addComponent(panelBusca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );

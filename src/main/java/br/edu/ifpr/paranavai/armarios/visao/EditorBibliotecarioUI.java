@@ -38,11 +38,12 @@ public class EditorBibliotecarioUI extends javax.swing.JFrame {
         
         for (int i = 0; i < lista.size(); i++) {
             Bibliotecario mostraBibliotecario = lista.get(i);
-            Object[] dadosLinha = new Object[4];
-            dadosLinha[0] = mostraBibliotecario.getSiape();
-            dadosLinha[1] = mostraBibliotecario.getNome();
-            dadosLinha[2] = mostraBibliotecario.getEmail();
-            dadosLinha[3] = mostraBibliotecario.getTelefone();
+            Object[] dadosLinha = new Object[5];
+            dadosLinha[0] = mostraBibliotecario.getId();
+            dadosLinha[1] = mostraBibliotecario.getSiape();
+            dadosLinha[2] = mostraBibliotecario.getNome();
+            dadosLinha[3] = mostraBibliotecario.getEmail();
+            dadosLinha[4] = mostraBibliotecario.getTelefone();
             modeloDeColunasDaTabela.addRow(dadosLinha);
         }
     }
@@ -71,21 +72,21 @@ public class EditorBibliotecarioUI extends javax.swing.JFrame {
 
         tblBibliotecario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Siape", "Nome", "E-mail", "Telefone"
+                "ID", "Siape", "Nome", "E-mail", "Telefone"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -96,12 +97,14 @@ public class EditorBibliotecarioUI extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblBibliotecario.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tblBibliotecario);
         if (tblBibliotecario.getColumnModel().getColumnCount() > 0) {
             tblBibliotecario.getColumnModel().getColumn(0).setResizable(false);
             tblBibliotecario.getColumnModel().getColumn(1).setResizable(false);
             tblBibliotecario.getColumnModel().getColumn(2).setResizable(false);
             tblBibliotecario.getColumnModel().getColumn(3).setResizable(false);
+            tblBibliotecario.getColumnModel().getColumn(4).setResizable(false);
         }
 
         panelNovo.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));

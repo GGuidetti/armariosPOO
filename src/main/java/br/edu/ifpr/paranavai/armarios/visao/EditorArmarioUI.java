@@ -39,9 +39,10 @@ public class EditorArmarioUI extends javax.swing.JFrame {
         for (int i = 0; i < lista.size(); i++) {
             Armario mostraArmario = lista.get(i);
             Object[] dadosLinha = new Object[4];
-            dadosLinha[0] = mostraArmario.getNumero();
-            dadosLinha[1] = mostraArmario.getObservacoes();
+            dadosLinha[0] = mostraArmario.getId();
+            dadosLinha[1] = mostraArmario.getNumero();
             dadosLinha[2] = mostraArmario.getLocalizacao().getNome();
+            dadosLinha[3] = mostraArmario.getObservacoes();
             modeloDeColunasDaTabela.addRow(dadosLinha);
         }
     }
@@ -70,21 +71,21 @@ public class EditorArmarioUI extends javax.swing.JFrame {
 
         tblArmario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Numero", "Localizacao", "Observacao"
+                "ID", "Numero", "Localizacao", "Observacao"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -100,6 +101,7 @@ public class EditorArmarioUI extends javax.swing.JFrame {
             tblArmario.getColumnModel().getColumn(0).setResizable(false);
             tblArmario.getColumnModel().getColumn(1).setResizable(false);
             tblArmario.getColumnModel().getColumn(2).setResizable(false);
+            tblArmario.getColumnModel().getColumn(3).setResizable(false);
         }
 
         panelNovo.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));

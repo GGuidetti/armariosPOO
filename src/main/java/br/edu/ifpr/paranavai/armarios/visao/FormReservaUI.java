@@ -5,8 +5,14 @@
 package br.edu.ifpr.paranavai.armarios.visao;
 
 import br.edu.ifpr.paranavai.armarios.controle.ReservaControle;
+import br.edu.ifpr.paranavai.armarios.modelo.Armario;
+import br.edu.ifpr.paranavai.armarios.modelo.Estudante;
 import br.edu.ifpr.paranavai.armarios.modelo.Pessoa;
 import br.edu.ifpr.paranavai.armarios.modelo.Reserva;
+import br.edu.ifpr.paranavai.armarios.servico.ArmarioServico;
+import br.edu.ifpr.paranavai.armarios.servico.EstudanteServico;
+import java.util.Date;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,20 +22,27 @@ import javax.swing.JOptionPane;
 public class FormReservaUI extends javax.swing.JFrame {
 
     private Reserva reserva;
-
+    List<Armario> armarios;
     /**
      * Creates new form FormReservaUI
      */
     public FormReservaUI() {
         initComponents();
         this.reserva = new Reserva();
+        this.armarios = ArmarioServico.buscarTodos();
+        for (Armario armario : armarios){
+            jComboBox1.addItem(new ComboItem(armario.getNumero(),armario));
+        }
     }
 
     public FormReservaUI(int codigo) {
         initComponents();
         this.reserva = ReservaControle.buscarPorId(codigo);
         panelFormulario.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados da Reserva " + this.reserva.getId()));
-        txtNome.setText(this.reserva.getPessoa().getNome());
+        this.armarios = ArmarioServico.buscarTodos();
+        for (Armario armario : armarios){
+            jComboBox1.addItem(new ComboItem(armario.getNumero(),armario));
+        }
     }
 
     /**
@@ -42,13 +55,13 @@ public class FormReservaUI extends javax.swing.JFrame {
     private void initComponents() {
 
         panelFormulario = new javax.swing.JPanel();
-        txtNome = new javax.swing.JTextField();
         btnSalvar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        txtNome1 = new javax.swing.JTextField();
         lblNome1 = new javax.swing.JLabel();
         lblNome2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        txtRa = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setResizable(false);
@@ -56,12 +69,6 @@ public class FormReservaUI extends javax.swing.JFrame {
         panelFormulario.setToolTipText("");
         panelFormulario.setName("Dados da Reserva"); // NOI18N
         panelFormulario.setOpaque(false);
-
-        txtNome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNomeActionPerformed(evt);
-            }
-        });
 
         btnSalvar.setText("Salvar");
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -77,7 +84,7 @@ public class FormReservaUI extends javax.swing.JFrame {
             }
         });
 
-        lblNome1.setText("Aluno");
+        lblNome1.setText("RA do Estudante");
 
         lblNome2.setText("Armario");
 
@@ -90,25 +97,25 @@ public class FormReservaUI extends javax.swing.JFrame {
         panelFormulario.setLayout(panelFormularioLayout);
         panelFormularioLayout.setHorizontalGroup(
             panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelFormularioLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFormularioLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(94, 94, 94))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFormularioLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtNome)
-                    .addComponent(txtNome1)
-                    .addGroup(panelFormularioLayout.createSequentialGroup()
+                .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtRa)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelFormularioLayout.createSequentialGroup()
                         .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelFormularioLayout.createSequentialGroup()
                                 .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(lblNome2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblNome1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblNome1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFormularioLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(94, 94, 94))
         );
         panelFormularioLayout.setVerticalGroup(
             panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -117,12 +124,12 @@ public class FormReservaUI extends javax.swing.JFrame {
                 .addGap(1, 1, 1)
                 .addComponent(lblNome1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(txtRa, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblNome2)
-                .addGap(3, 3, 3)
-                .addComponent(txtNome1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
                 .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar)
                     .addComponent(btnCancelar))
@@ -153,9 +160,12 @@ public class FormReservaUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        Estudante estudante = EstudanteServico.buscarPorRa(txtRa.getText());
         if (this.reserva.getId() == null) {
             try {
-                this.reserva.setPessoa(new Pessoa());
+                this.reserva.setEstudante(estudante);
+                this.reserva.setArmario(((ComboItem)jComboBox1.getSelectedItem()).getArmario());
+                this.reserva.setDataHoraEmprestimo(new Date());
                 this.reserva = ReservaControle.inserir(this.reserva);
                 JOptionPane.showMessageDialog(this, "Localização Salva com Sucesso!!!");
             } catch (Exception e) {
@@ -165,7 +175,8 @@ public class FormReservaUI extends javax.swing.JFrame {
 
         }else {
             try {
-                this.reserva.setPessoa(new Pessoa());
+                this.reserva.setEstudante(estudante);
+                this.reserva.setArmario(((ComboItem)jComboBox1.getSelectedItem()).getArmario());
                 this.reserva = ReservaControle.atualizar(this.reserva);
                 JOptionPane.showMessageDialog(this, "Alterações salvas com Sucesso!!!");
             } catch (Exception e) {
@@ -178,10 +189,6 @@ public class FormReservaUI extends javax.swing.JFrame {
         editorReservaUI.setLocationRelativeTo(null);
         editorReservaUI.setVisible(true);
     }//GEN-LAST:event_btnSalvarActionPerformed
-
-    private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNomeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -224,11 +231,11 @@ public class FormReservaUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnSalvar;
+    private javax.swing.JComboBox<ComboItem> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblNome1;
     private javax.swing.JLabel lblNome2;
     private javax.swing.JPanel panelFormulario;
-    private javax.swing.JTextField txtNome;
-    private javax.swing.JTextField txtNome1;
+    private javax.swing.JTextField txtRa;
     // End of variables declaration//GEN-END:variables
 }
